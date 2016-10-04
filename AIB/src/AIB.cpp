@@ -56,6 +56,44 @@ int AIB_::establishConnection(void) {
 	return ret;
 }
 
+void setAPIDelimiter(char delimiter) {
+	_delimiter = delimiter;
+}
+
+void start(void) {
+	_printer->write('a');
+}
+
+void startWithInt(int value) {
+	sendInt( value, true );
+}
+
+void startWithChar(char value) {
+	sendChar( value, true );
+}
+
+void startWithString(String value) {
+	send( value, true );
+}
+
+void sendInt(int value, bool returnLine = false) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->write(value + newLine);
+}
+
+void sendChar(char value, bool returnLine = false) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->write(value + newLine);
+}
+
+void send(String value, bool returnLine = false) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->write(value + newLine);
+}
+
+char getDelimiter(void) {
+	return _delimiter;
+}
 
 void AIB_::prettySerial(void) {
 	Serial.print("10\n");
