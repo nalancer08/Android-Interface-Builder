@@ -17,7 +17,7 @@ class AIB_ {
 		AIB_(int typeInterface, Print &print);
 
 		void setSerialSpeed(int);
-		int establishConnection(void);
+		int prepareConnection(void);
 
 		void setAPIDelimiter(char delimiter);
 		char getDelimiter(void);

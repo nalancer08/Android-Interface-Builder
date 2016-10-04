@@ -18,7 +18,7 @@ void AIB_::setSerialSpeed(int serialSpeed) {
 	Serial.begin(_serialSpeed);
 }
 
-int AIB_::establishConnection(void) {
+int AIB_::prepareConnection(void) {
 
 	String type = "";
 	int ret = 0;
@@ -27,14 +27,14 @@ int AIB_::establishConnection(void) {
 
 		case 1:
 			type + "Produc";
-			_printer->println("Production profile\n");
-			ret = 1;
+			_printer->println("Production profile = Waiting for initializing!");
+			ret = 0;
 		break;
 
 		case 2:
 			type + "Test";
 			_printer->print("Testing profile\n");
-			ret = 2;
+			ret = 1;
 
       /*_printer->print("Esperando por data => ");
       if (Serial.available() > 0) {
