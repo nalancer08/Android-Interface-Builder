@@ -97,5 +97,4 @@ char getDelimiter(void) {
 
 void AIB_::prettySerial(void) {
 	Serial.print("10\n");
-	//delay(5000);
 }
