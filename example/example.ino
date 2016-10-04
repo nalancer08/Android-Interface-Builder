@@ -16,21 +16,18 @@ void loop() {
 
     if ( banderita == 0 ) {
           //Serial.print("Testing profile\n");
-          Serial.write("start\n");
+          //Serial.write("start\n");
           con = interface.establishConnection();
           delay(5000);
            if (Serial.available() > 0) {
               String la = Serial.readString();
-              Serial.print("I received: ");
+              //Serial.print("I received: ");
               Serial.println(la);
               banderita = 1;
            }
     } else {
-          delay(3000);
-          Serial.print("hola erick\n");
-          delay(5000);
+
+          // Here Arduino logic || Aqui va la logica del arduino o l que se quiera hacer :D
     }
-    //banderita = 1;
-    
-    //interface.prettySerial();
+   
 }
