@@ -18,7 +18,7 @@ void AIB_::setSerialSpeed(int serialSpeed) {
 	Serial.begin(_serialSpeed);
 }
 
-int AIB_::establishConnection(void) {
+int AIB_::prepareConnection(void) {
 
 	String type = "";
 	int ret = 0;
@@ -27,14 +27,14 @@ int AIB_::establishConnection(void) {
 
 		case 1:
 			type + "Produc";
-			_printer->println("Production profile\n");
-			ret = 1;
+			_printer->println("Production profile = Waiting for initializing!");
+			ret = 0;
 		break;
 
 		case 2:
 			type + "Test";
 			_printer->print("Testing profile\n");
-			ret = 2;
+			ret = 1;
 
       /*_printer->print("Esperando por data => ");
       if (Serial.available() > 0) {
@@ -56,8 +56,45 @@ int AIB_::establishConnection(void) {
 	return ret;
 }
 
+void AIB_::setAPIDelimiter(char delimiter) {
+	_delimiter = delimiter;
+}
+
+void AIB_::sendInt(int value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
+}
+
+void AIB_::sendChar(char value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
+}
+
+void AIB_::send(String value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
+}
+
+void AIB_::start(void) {
+	_printer->print('a');
+}
+
+void AIB_::startWithInt(int value) {
+	sendInt( value, true );
+}
+
+void AIB_::startWithChar(char value) {
+	sendChar( value, true );
+}
+
+void AIB_::startWithString(String value) {
+	send( value, true );
+}
+
+char AIB_::getDelimiter(void) {
+	return _delimiter;
+}
 
 void AIB_::prettySerial(void) {
 	Serial.print("10\n");
-	//delay(5000);
 }
