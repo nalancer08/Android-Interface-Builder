@@ -10,7 +10,7 @@
 #define interfaceTesting 2
 
 #include "SoftwareSerial.h"
-#define SERIAL_BUFFER_SIZE 256
+//#define SERIAL_BUFFER_SIZE 256
 
 class AIB_ {
 	public:
@@ -19,7 +19,7 @@ class AIB_ {
 		void setSerialSpeed(int);
 		int prepareConnection(void);
 
-		void setAPIDelimiter(char delimiter);
+		void setAPIDelimiter(char delimiter = '|');
 		char getDelimiter(void);
 
 		void start(void);
@@ -33,12 +33,11 @@ class AIB_ {
 
 		//bool checkInstance(void);
 		void prettySerial(void);
+
+		char _delimiter;
 	private:
 		int _typeInterface;
 		int _serialSpeed;
-
-		char _delimiter;
-
 		Print* _printer;
 		//bool _completeSetup;
 };

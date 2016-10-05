@@ -56,42 +56,42 @@ int AIB_::prepareConnection(void) {
 	return ret;
 }
 
-void setAPIDelimiter(char delimiter) {
+void AIB_::setAPIDelimiter(char delimiter) {
 	_delimiter = delimiter;
 }
 
-void start(void) {
-	_printer->write('a');
+void AIB_::sendInt(int value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
 }
 
-void startWithInt(int value) {
+void AIB_::sendChar(char value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
+}
+
+void AIB_::send(String value, bool returnLine) {
+	String newLine = ( returnLine == false ) ? "" : "\n";
+	_printer->print((String)value);
+}
+
+void AIB_::start(void) {
+	_printer->print('a');
+}
+
+void AIB_::startWithInt(int value) {
 	sendInt( value, true );
 }
 
-void startWithChar(char value) {
+void AIB_::startWithChar(char value) {
 	sendChar( value, true );
 }
 
-void startWithString(String value) {
+void AIB_::startWithString(String value) {
 	send( value, true );
 }
 
-void sendInt(int value, bool returnLine = false) {
-	String newLine = ( returnLine == false ) ? "" : "\n";
-	_printer->write(value + newLine);
-}
-
-void sendChar(char value, bool returnLine = false) {
-	String newLine = ( returnLine == false ) ? "" : "\n";
-	_printer->write(value + newLine);
-}
-
-void send(String value, bool returnLine = false) {
-	String newLine = ( returnLine == false ) ? "" : "\n";
-	_printer->write(value + newLine);
-}
-
-char getDelimiter(void) {
+char AIB_::getDelimiter(void) {
 	return _delimiter;
 }
 
